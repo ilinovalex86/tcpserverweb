@@ -7,9 +7,9 @@ import (
 
 // Сохранение cookies
 func (cls *clients) dump() {
-	cls.RLock()
+	cls.mu.RLock()
 	jsonData, err := json.MarshalIndent(&cls.m, "", "  ")
-	cls.RUnlock()
+	cls.mu.RUnlock()
 	check(err)
 	clientsDb.Lock()
 	defer clientsDb.Unlock()

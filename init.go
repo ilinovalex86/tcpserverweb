@@ -31,8 +31,8 @@ type Response struct {
 var Clients = &clients{m: make(map[string]string)}
 
 type clients struct {
-	sync.RWMutex
-	m map[string]string
+	mu sync.RWMutex
+	m  map[string]string
 }
 
 //if err != nil -> log.Fatal(err)
