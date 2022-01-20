@@ -2,8 +2,8 @@ package tcpserverweb
 
 import "net/http"
 
-// Clear - Обнуляет cookie у web клиента и перенаправляет на login
-func Clear(w http.ResponseWriter, r *http.Request) {
+// ClientClear - Обнуляет cookie у web клиента и перенаправляет на login
+func ClientClear(w http.ResponseWriter, r *http.Request) {
 	cookieR, err := r.Cookie("SessionId")
 	if err == nil {
 		webId := cookieR.Value
