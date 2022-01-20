@@ -3,6 +3,7 @@ package tcpserverweb
 import (
 	"encoding/json"
 	ex "github.com/ilinovalex86/explorer"
+	tcp "github.com/ilinovalex86/tcpserver"
 	"log"
 	"sync"
 )
@@ -14,11 +15,6 @@ type db struct {
 	file string
 }
 
-type available struct {
-	User string
-	Id   string
-}
-
 // Response - Структура для ответа браузеру
 type Response struct {
 	Menu           []ex.LinkAndName
@@ -27,7 +23,7 @@ type Response struct {
 	WebServer      string
 	Sep            string
 	User           string
-	FreeTcpClients []available
+	FreeTcpClients []tcp.Available
 	Error          string
 }
 
