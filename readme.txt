@@ -1,2 +1,3 @@
-Package tcpserverweb - модуль управления cookie и вспомагательные функции для пакета tcpserver
+Package tcpserverweb - пакет управления cookie и
+вспомагательные функции для веб интерфейса пакета tcpserver
 github.com/ilinovalex86/tcpserver

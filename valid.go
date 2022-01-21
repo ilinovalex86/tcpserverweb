@@ -1,6 +1,9 @@
 package tcpserverweb
 
-import "net/http"
+import (
+	tcp "github.com/ilinovalex86/tcpserver"
+	"net/http"
+)
 
 // Valid - Проверяет cookie web клиента + возвращает индекс tcp клиента
 func Valid(r *http.Request) (string, bool) {
@@ -8,7 +11,9 @@ func Valid(r *http.Request) (string, bool) {
 	if err == nil {
 		webId := cookie.Value
 		if tcpId, ok := Clients.Load(webId); ok {
-			return tcpId, true
+			if tcp.Clients.Exist(tcpId) {
+				return tcpId, true
+			}
 		}
 	}
 	return "", false
