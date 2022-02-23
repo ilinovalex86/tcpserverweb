@@ -3,7 +3,6 @@ package tcpserverweb
 import (
 	"encoding/json"
 	ex "github.com/ilinovalex86/explorer"
-	tcp "github.com/ilinovalex86/tcpserver"
 	"log"
 	"sync"
 )
@@ -23,8 +22,10 @@ type Response struct {
 	WebServer      string
 	Sep            string
 	User           string
-	FreeTcpClients []tcp.Available
+	FreeTcpClients []string
 	Error          string
+	ScreenSizeX    int
+	ScreenSizeY    int
 }
 
 // Clients - Веб клиенты - cookies
@@ -45,8 +46,9 @@ func check(err error) {
 // Инициализация cookies
 func init() {
 	if ex.ExistFile(clientsDb.file) {
-		data := ex.ReadFileFull(clientsDb.file)
-		err := json.Unmarshal(data, &Clients.m)
+		data, err := ex.ReadFileFull(clientsDb.file)
+		check(err)
+		err = json.Unmarshal(data, &Clients.m)
 		check(err)
 	}
 }
